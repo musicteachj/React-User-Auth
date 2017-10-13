@@ -1,0 +1,24 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+
+class ProtectedContent extends Component {
+  componentWillMount() {
+    this.props.fetchMessage();
+  }
+
+  render() {
+    return (
+    	<div>
+    	<h1 className="jumbotron">Hello</h1>
+      <div className="msg">{this.props.message}</div>
+      </div>
+    );
+  }
+}
+
+function mapStateToProps(state) {
+  return { message: state.auth.message };
+}
+
+export default connect(mapStateToProps, actions)(ProtectedContent);
